@@ -8,6 +8,11 @@ const router = createBrowserRouter([
         element: <HomeLayout></HomeLayout>,
         children: [
             {
+                path: "",
+                element: <NewsFeed></NewsFeed>,
+                loader: () => fetch(`https://openapi.programming-hero.com/api/news/category/08`)
+            },
+            {
                 path: "/category/:id",
                 element: <NewsFeed></NewsFeed>,
                 loader: ({params}) => fetch(`https://openapi.programming-hero.com/api/news/category/${params.id}`)

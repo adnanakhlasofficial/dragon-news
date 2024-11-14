@@ -1,13 +1,14 @@
-import { FaStar, FaEye, FaShareAlt } from "react-icons/fa";
+import { FaEye, FaShareAlt } from "react-icons/fa";
+import ReactStars from "react-stars";
 
 const NewsCard = (props = {}) => {
     const { singleNews } = props || {};
     return (
-        <div className="rounded overflow-hidden shadow-lg bg-white border border-gray-200 p-4">
+        <div className="rounded overflow-hidden shadow-lg bg-white border border-gray-200 grid place-content-center divide-y-[1px] *:p-4 ">
             {/* Header */}
-            <div className="flex items-center mb-4">
+            <div className="flex items-center w-full bg-[#F3F3F3]">
                 <img
-                    className="w-10 rounded-full"
+                    className="w-10 h-10 rounded-full"
                     src={singleNews.author.img}
                     alt={singleNews.author.name}
                 />
@@ -34,16 +35,16 @@ const NewsCard = (props = {}) => {
             </h3>
 
             {/* Image */}
-            <div className="my-3">
+            <div>
                 <img
-                    className="w-full h-48 object-cover rounded-md"
+                    className="w-full h-96 object-contain rounded-md"
                     src={singleNews.thumbnail_url}
                     alt="Article thumbnail"
                 />
             </div>
 
             {/* Description */}
-            <p className="text-gray-600 text-sm mb-3">
+            <p className="text-gray-600 text-sm">
                 {singleNews.details.slice(0, 100)}...
                 <span className="text-blue-600 font-medium cursor-pointer">
                     {" "}
@@ -54,7 +55,13 @@ const NewsCard = (props = {}) => {
             {/* Rating and Views */}
             <div className="flex items-center justify-between text-gray-500">
                 <div className="flex items-center">
-                    <FaStar className="text-yellow-500 mr-1" />
+                    <ReactStars
+                        value={singleNews.rating.number}
+                        count={5}
+                        size={24}
+                        color2={"#FF8C47"}
+                        edit={false}
+                    />
                     <span className="font-semibold">
                         {singleNews.rating.number}
                     </span>
