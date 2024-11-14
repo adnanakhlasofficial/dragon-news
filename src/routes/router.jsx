@@ -5,6 +5,13 @@ const router = createBrowserRouter([
     {
         path: "/",
         element: <HomeLayout></HomeLayout>,
+        children: [
+            {
+                path: "/category/:id",
+                element: <h2>Category</h2>
+
+            }
+        ]
     },
     {
         path: "/news",
