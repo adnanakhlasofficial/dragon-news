@@ -1,6 +1,7 @@
 import Header from "../components/Header";
 import LatestNews from "../components/LatestNews";
 import LeftSidebar from "../components/LayoutComponents/LeftSidebar";
+import RightSidebar from "../components/LayoutComponents/RightSidebar";
 import Navbar from "../components/Navbar";
 
 const HomeLayout = () => {
@@ -20,7 +21,9 @@ const HomeLayout = () => {
                     <LeftSidebar></LeftSidebar>
                 </aside>
                 <section className="col-span-6">newsportal</section>
-                <aside className="col-span-3">right sidebar</aside>
+                <aside className="col-span-3">
+                    <RightSidebar></RightSidebar>
+                </aside>
             </main>
         </div>
     );
