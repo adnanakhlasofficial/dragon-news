@@ -11,7 +11,7 @@ const LeftSidebar = () => {
     }, []);
 
     return (
-        <div>
+        <div className="sticky top-6">
             <h2 className="font-medium">All Category ({categories.length})</h2>
             <div className="flex flex-col gap-2 mt-6">
                 {categories.map((category) => (

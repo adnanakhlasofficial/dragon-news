@@ -1,4 +1,5 @@
 import { FaEye, FaShareAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import ReactStars from "react-stars";
 
 const NewsCard = (props = {}) => {
@@ -37,8 +38,8 @@ const NewsCard = (props = {}) => {
             {/* Image */}
             <div>
                 <img
-                    className="w-full h-96 object-contain rounded-md"
-                    src={singleNews.thumbnail_url}
+                    className="w-full object-contain rounded-md"
+                    src={singleNews.image_url}
                     alt="Article thumbnail"
                 />
             </div>
@@ -46,10 +47,10 @@ const NewsCard = (props = {}) => {
             {/* Description */}
             <p className="text-gray-600 text-sm">
                 {singleNews.details.slice(0, 300)}...
-                <span className="text-blue-600 font-medium cursor-pointer">
+                <Link to={`/news/${singleNews._id}`} className="text-blue-600 font-medium cursor-pointer">
                     {" "}
                     Read More
-                </span>
+                </Link>
             </p>
 
             {/* Rating and Views */}
