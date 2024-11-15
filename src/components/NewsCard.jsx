@@ -45,7 +45,7 @@ const NewsCard = (props = {}) => {
 
             {/* Description */}
             <p className="text-gray-600 text-sm">
-                {singleNews.details.slice(0, 100)}...
+                {singleNews.details.slice(0, 300)}...
                 <span className="text-blue-600 font-medium cursor-pointer">
                     {" "}
                     Read More
