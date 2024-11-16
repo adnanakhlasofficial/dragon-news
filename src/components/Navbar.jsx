@@ -6,9 +6,11 @@ import { AuthContext } from "../provider/AuthProvider";
 const Navbar = () => {
     const { user, logoutUser } = useContext(AuthContext);
 
+
     return (
         <div className="grid grid-cols-3 py-3 items-center">
-            <div>
+            <div className="space-y-1">
+                <h2>{user?.displayName}</h2>
                 <h2>{user?.email}</h2>
             </div>
             <div>
@@ -25,7 +27,12 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="flex gap-3 justify-end items-center">
-                <FaUserCircle size={40} />
+                {
+                    user && user?.email ? <div>
+                        <img className="ring-2 ring-offset-2 ring-[#1F2937] w-10 h-10 rounded-full" src={user && user?.photoURL} alt="" />
+                    </div> :  <FaUserCircle size={40} />
+                }
+               
                 {
                     user && user?.email ? <button onClick={logoutUser} className="btn btn-active rounded-none px-8">Logout</button> : <Link
                     to="/auth/login"

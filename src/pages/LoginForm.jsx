@@ -1,11 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Login from "../components/Login";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 
 const LoginForm = () => {
-
     const {setUser, loginUser} = useContext(AuthContext);
+    const {state} = useLocation();
+    const [error, setError] = useState({});
+    
+    const navigate = useNavigate();
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -19,10 +22,11 @@ const LoginForm = () => {
         .then(result => {
             const user = result.user;
             setUser(user)
+            navigate(state ? state : "/")
         })
-        .catch(error => {
-            const errorCode = error.code;
-            alert(errorCode)
+        .catch(err => {
+            const errorCode = err.code;
+            setError({...error, login: errorCode})
         })
         
     }
@@ -56,13 +60,16 @@ const LoginForm = () => {
                             required
                         />
                         <label className="label">
-                            <a
+                            <Link
                                 href="#"
                                 className="text-xs text-red-500 font-medium hover:underline underline-offset-2 hover:!text-red-500"
                             >
                                 Forgot password?
-                            </a>
+                            </Link>
                         </label>
+                        {
+                            error.login && <label className="text-sm text-red-500 font-medium">{error.login}</label>
+                        }
                     </div>
                     <div className="form-control mt-6">
                         <button className="btn btn-neutral !rounded-md">Login</button>
