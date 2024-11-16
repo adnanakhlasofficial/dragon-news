@@ -6,6 +6,13 @@ on:
   push:
     branches:
       - main
+env:
+    VITE_apiKey: ${{ secrets. AIzaSyCF68IGEOb8JmD-2S5ZOjaYooyb3A7xZ44}}
+    VITE_authDomain: ${{ secrets. dragon-news-da.firebaseapp.com}}
+    VITE_projectId: ${{ secrets. dragon-news-da}}
+    VITE_storageBucket: ${{ secrets. dragon-news-da.firebasestorage.app}}
+    VITE_messagingSenderId: ${{ secrets. 866699625410}}
+    VITE_appId: ${{ secrets. 1:866699625410:web:ec40e8665bbf6adcc98c5b}}
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
