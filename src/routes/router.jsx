@@ -6,6 +6,7 @@ import LoginForm from "../pages/LoginForm";
 import RegisterForm from "../pages/RegisterForm";
 import NewsDetails from "../pages/NewsDetails";
 import PrivateRoute from "./PrivateRoute";
+import PasswordResetForm from "../pages/PasswordResetForm";
 
 const router = createBrowserRouter([
     {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
             {
                 path: "/auth/register",
                 element: <RegisterForm></RegisterForm>
+            },
+            {
+                path: "/auth/passwordreset",
+                element: <PasswordResetForm></PasswordResetForm>
             }
         ]
     },

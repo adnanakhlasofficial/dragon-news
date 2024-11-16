@@ -4,7 +4,7 @@ import { AuthContext } from "../provider/AuthProvider";
 import { useNavigate } from "react-router-dom";
 
 const Login = (props = {}) => {
-    const { googleLogin, githubLogin } = useContext(AuthContext);
+    const { googleLogin, githubLogin, user } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleGoogleLogin = () => {
@@ -21,7 +21,7 @@ const Login = (props = {}) => {
 
     const { children } = props || {};
     return (
-        <div>
+        <div className={user ? "hidden" : "block mb-8"}>
             {children}
             <div className="mt-6 space-y-2">
                 <button

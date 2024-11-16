@@ -3,9 +3,15 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 
 const RegisterForm = () => {
-    const { createNewUser, setUser, updateUserProfile } = useContext(AuthContext);
+    const {
+        createNewUser,
+        setUser,
+        updateUserProfile,
+        verifyUser,
+        logoutUser,
+    } = useContext(AuthContext);
     const navigate = useNavigate();
-    
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -14,23 +20,26 @@ const RegisterForm = () => {
         const photoURL = form.get("photo-url");
         const email = form.get("email");
         const password = form.get("password");
-        console.log({displayName, photoURL, email, password });
 
         createNewUser(email, password)
-        .then(result => {
-            const user = result.user;
-            setUser(user);
-            updateUserProfile({displayName, photoURL})
-            .then(()=>{
-                navigate("/")
+            .then((result) => {
+                const user = result.user;
+                setUser(user);
+                updateUserProfile({ displayName, photoURL })
+                    .then(() => {
+                        verifyUser().then(() => {
+                            logoutUser();
+                            alert("Email Verification sent!");
+                            navigate("/auth/login");
+                        });
+                    })
+                    .catch((err) => console.log(err));
             })
-            .catch(err => console.log(err))
-        })
-        .catch(error => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorCode, errorMessage);
-        })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorCode, errorMessage);
+            });
     };
 
     return (
