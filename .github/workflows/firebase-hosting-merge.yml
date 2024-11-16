@@ -7,12 +7,12 @@ on:
     branches:
       - main
 env:
-    VITE_apiKey: ${{ VITE_apiKey}}
-    VITE_authDomain: ${{ VITE_authDomain}}
-    VITE_projectId: ${{ VITE_projectId}}
-    VITE_storageBucket: ${{ VITE_storageBucket}}
-    VITE_messagingSenderId: ${{ VITE_messagingSenderId}}
-    VITE_appId: ${{ VITE_appId}}
+    VITE_apiKey: ${{ secrets.VITE_apiKey}}
+    VITE_authDomain: ${{ secrets.VITE_authDomain}}
+    VITE_projectId: ${{ secrets.VITE_projectId}}
+    VITE_storageBucket: ${{ secrets.VITE_storageBucket}}
+    VITE_messagingSenderId: ${{ secrets.VITE_messagingSenderId}}
+    VITE_appId: ${{ secrets.VITE_appId}}
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
