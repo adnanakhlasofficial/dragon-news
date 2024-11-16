@@ -1,7 +1,10 @@
 import {
     createUserWithEmailAndPassword,
+    GithubAuthProvider,
+    GoogleAuthProvider,
     onAuthStateChanged,
     signInWithEmailAndPassword,
+    signInWithPopup,
     signOut,
     updateProfile,
 } from "firebase/auth";
@@ -14,6 +17,17 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     console.log(user);
+
+    const googleProvider = new GoogleAuthProvider();
+    const githubProvier = new GithubAuthProvider();
+
+    const googleLogin = () => {
+        return signInWithPopup(auth, googleProvider);
+    };
+
+    const githubLogin = () => {
+        return signInWithPopup(auth, githubProvier);
+    };
 
     const createNewUser = (email, password) => {
         setLoading(true);
@@ -45,6 +59,8 @@ const AuthProvider = ({ children }) => {
     const authInfo = {
         user,
         setUser,
+        googleLogin,
+        githubLogin,
         createNewUser,
         loginUser,
         updateUserProfile,
