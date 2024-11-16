@@ -6,7 +6,7 @@ const NewsFeed = () => {
     
     return (
         <div>
-            <h2 className="font-medium">News Feed ({news.length})</h2>
+            <h2 className="font-medium">News Feed: ({news.length})</h2>
             <div className="mt-6 space-y-4">
                 {
                     news.map(singleNews => <NewsCard key={singleNews._id} singleNews={singleNews}></NewsCard>)
